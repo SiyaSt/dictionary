@@ -1,0 +1,20 @@
+@use "../../styles/base" as *;
+
+.header {
+  @include flexbox;
+  justify-content: space-between;
+  background: $accent-color_dark;
+  padding: 30px;
+  border-radius: 4px;
+}
+
+.link{
+  text-decoration: none;
+  color: $accent-color_light;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.link:nth-child(2):before {
+  content: "★ ";
+}
