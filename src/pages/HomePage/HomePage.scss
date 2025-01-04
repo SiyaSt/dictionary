@@ -1,0 +1,13 @@
+@use "../../styles/base" as *;
+
+:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.home-page {
+  display: flex;
+  width: 100%;
+}
