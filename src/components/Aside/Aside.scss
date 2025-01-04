@@ -1,0 +1,27 @@
+@use "../../styles/base" as *;
+
+
+.aside {
+  display: flex;
+  align-items: flex-start;
+  background: $background-color_dark;
+  width: 20%;
+  border-radius: 4px;
+  justify-content: center;
+  height: 200px;
+  padding: 10px;
+
+  input {
+    border: 2px solid $accent-color_dark;
+    border-radius: 4px;
+    width: 80%;
+    height: 40px;
+    background-image: url('SearchMagnifyingGlass.svg');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 40px 20px;
+    padding-right: 10px;
+  }
+}
+
+
