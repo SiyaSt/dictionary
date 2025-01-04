@@ -1,0 +1,27 @@
+@use "../../styles/base" as *;
+
+.word-list {
+  list-style: none;
+  width: 80%;
+  li {
+    background: $accent-color_light;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: max-height 0.3s ease-in-out;
+
+    .def {
+      max-width: 900px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+    }
+
+    &.expanded {
+      max-height: 200px;
+      overflow: auto;
+    }
+  }
+}
