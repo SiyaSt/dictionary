@@ -4,5 +4,6 @@ import { Aside } from "./Aside/Aside";
 import { Checkbox } from "./CheckBox/CheckBox";
 import { WordDef } from "./WordDef/WordDef";
 import { WordsList } from "./WordsList/WordsList";
+import {WordItem} from "./WordItem/WordItem";
 
-export { Layout, Header, Aside, Checkbox, WordsList, WordDef };
+export { Layout, Header, Aside, Checkbox, WordsList, WordDef, WordItem };

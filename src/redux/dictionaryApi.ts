@@ -13,7 +13,7 @@ export const fetchDictionaryData = async (query: string): Promise<Word[]> => {
       response.data.length > 0 &&
       response.data[0].shortdef
     ) {
-      let words: Word[] = response.data.slice(0, 10).map((entry) => ({
+      const words: Word[] = response.data.slice(0, 10).map((entry) => ({
         word: entry.meta.id,
         type: entry.fl,
         definition: entry.shortdef[0],
