@@ -37,7 +37,7 @@ export const WordsList: FC<WordsListProps> = ({ results }) => {
           checked={isStarred}
           onChange={() => toggleStarWords({ ...result, checked: isStarred })}
           className="checkbox"
-          icon={<Star className="star-icon" />}
+          icon={<Star className="icon" />}
         />
       </li>
     );

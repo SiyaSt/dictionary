@@ -2,20 +2,20 @@
 
 
 .aside {
-  display: flex;
-  align-items: flex-start;
+  @include flexbox;
+  flex-direction: column;
+  justify-content: flex-start;
   background: $background-color_dark;
   width: 20%;
   border-radius: 4px;
-  justify-content: center;
-  height: 200px;
+  max-height: 300px;
   padding: 10px;
   margin-top: 10px;
 
   input {
+    width: 80%;
     border: 2px solid $accent-color_dark;
     border-radius: 4px;
-    width: 80%;
     height: 40px;
     background-image: url('../../imges/SearchMagnifyingGlass.svg');
     background-repeat: no-repeat;
@@ -23,6 +23,20 @@
     background-size: 40px 20px;
     padding-right: 10px;
   }
+
+  .filter {
+    align-self: flex-start;
+    .filter-label {
+      display: flex;
+      align-items: center;
+    }
+  }
+
 }
 
+@media screen and (max-width: 800px) {
+  .aside{
+    width: 100%;
+  }
+}
 

@@ -4,7 +4,6 @@
   display: inline-flex;
   cursor: pointer;
   user-select: none;
-  margin-right: 8px;
 }
 
 .checkbox-input {
@@ -12,20 +11,21 @@
 }
 
 .checkbox-box {
-  @include flexbox;
-  margin-right: 5px;
+  display: flex;
 
-  .star-icon {
+
+  .icon {
     width: 30px;
     height: 30px;
     fill:$accent-color_light;
     transition: fill 0.2s ease;
+
   }
 }
 
 
 .checkbox-box.checked {
-  .star-icon {
+  .icon {
     fill:$accent-color_dark;
   }
 }

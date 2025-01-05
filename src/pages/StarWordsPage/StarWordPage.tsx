@@ -1,26 +1,50 @@
 import { Aside, InputStar, StarList } from "../../components";
-import "./StarWordPage.scss";
 import { useState } from "react";
 import { Word } from "../../types/types";
+import { useSearchParams } from "react-router-dom";
+import "./StarWordPage.scss";
 
 export const StarWordPage = () => {
   const [words, setWords] = useState<Word[]>(() => {
     const savedWords = localStorage.getItem("starWords");
     return savedWords ? JSON.parse(savedWords) : [];
   });
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredWords = words.filter((word) =>
-    word.word.toLowerCase().includes(searchTerm.toLowerCase()),
+  const handleFilterChange = (filterParam: string) => {
+    setSearchParams({ filter: filterParam });
+  };
+
+  const filterWords = (
+    words: Word[],
+    filterParam: string,
+    searchTerm: string,
+  ): Word[] => {
+    const filters = filterParam === "all" ? [] : filterParam.split(",");
+    return words.filter((word) => {
+      const wordTypeMatch = filters.length === 0 || filters.includes(word.type);
+      const searchTermMatch =
+        searchTerm.trim() === "" ||
+        word.word.toLowerCase().includes(searchTerm.toLowerCase());
+      return wordTypeMatch && searchTermMatch;
+    });
+  };
+
+  const filteredWords = filterWords(
+    words,
+    searchParams.get("filter") || "all",
+    searchTerm,
   );
+
   return (
     <div className="star-page">
       <Aside
         input={
           <InputStar value={searchTerm} onChange={setSearchTerm} delay={300} />
         }
-        filter={false}
+        onFilterChange={handleFilterChange}
+        filter={true}
       />
       <StarList words={filteredWords} setWords={setWords} />
     </div>

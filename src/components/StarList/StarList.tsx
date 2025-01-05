@@ -55,14 +55,14 @@ export const StarList:FC<StarListProps> = ({words, setWords}) => {
           checked={result.checked}
           onChange={() => toggleStarWords(result)}
           className="checkbox"
-          icon={<Star className="star-icon" />}
+          icon={<Star className="icon" />}
         />
       </li>
     );
   };
 
   return (
-    <ul className="word-list">
+    <ul className="star-list">
       {words.map((word, index) => renderWord(word, index))}
     </ul>
   );

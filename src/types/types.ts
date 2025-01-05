@@ -4,3 +4,8 @@ export interface Word{
   definition: string;
   checked: boolean;
 }
+
+export interface Options {
+  value: string;
+  label: string;
+}

@@ -8,8 +8,7 @@
   li {
     @include flexbox;
     background: $accent-color_light;
-    justify-content: space-between;
-    margin: 10px;
+    margin-top: 10px;
     border-radius: 4px;
 
     .word {
@@ -19,7 +18,7 @@
       transition: max-height 0.3s ease-in-out;
 
       .def {
-        max-width: 800px;
+        width: 900px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -30,5 +29,10 @@
         overflow: auto;
       }
     }
+  }
+}
+@media screen and (max-width: 800px) {
+  .word-list{
+    width: 100%;
   }
 }
