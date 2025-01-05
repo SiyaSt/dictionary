@@ -1,4 +1,4 @@
-export const classNames = (...args) => {
+export const classNames = ({ args }: { args: any[] }) => {
   let classes = [];
 
   for (let arg of args) {

@@ -19,7 +19,7 @@ export const WordItem: FC<WordItemProps> = ({result}) => {
   const isExpanded = expandedWords[result.word] || false;
 
   return (
-    <div className={classNames("word", { isExpanded: isExpanded })}>
+    <div className={classNames({ args: ["word", { isExpanded: isExpanded }] })}>
       <strong onClick={() => toggleExpanded(result.word)}>{result.word}</strong>
       <i>{result.type}</i>
       <WordDef isExpanded={isExpanded} definition={result.definition} />

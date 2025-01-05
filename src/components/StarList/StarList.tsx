@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Word } from "../../types/types";
 import { WordItem } from "../WordItem/WordItem";
 import { Checkbox } from "../CheckBox/CheckBox";
 import { ReactComponent as Star } from "../../imges/Star.svg";
 import "./StarList.scss"
 
-export const StarList = () => {
-  const [words, setWords] = useState<Word[]>(() => {
-    const savedWords = localStorage.getItem("starWords");
-    return savedWords ? JSON.parse(savedWords) : [];
-  });
+interface StarListProps {
+  words: Word[];
+  setWords: (value: Word[]) => void
+}
+
+export const StarList:FC<StarListProps> = ({words, setWords}) => {
 
   useEffect(() => {
     localStorage.setItem("starWords", JSON.stringify(words));
