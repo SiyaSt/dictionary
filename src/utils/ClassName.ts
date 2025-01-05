@@ -1,4 +1,4 @@
-export const classNames = ({ args }: { args: any[] }) => {
+export const classNames = ({ args }: {  args: (string | { [key: string]: boolean })[] }) => {
   let classes = [];
 
   for (const arg of args) {
