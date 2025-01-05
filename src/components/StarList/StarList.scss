@@ -1,6 +1,6 @@
 @use "../../styles/base" as *;
 
-.star-list {
+.word-list {
   list-style: none;
   width: 80%;
   padding: 0;
@@ -36,7 +36,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .star-list{
+  .word-list{
     width: 100%;
   }
 }

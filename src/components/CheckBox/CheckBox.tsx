@@ -1,5 +1,6 @@
 import { FC, ReactNode, useState } from "react";
 import "./CheckBox.scss";
+import { classNames } from "../../utils/ClassName";
 
 interface CheckboxProps {
   checked: boolean;
@@ -30,7 +31,7 @@ export const Checkbox: FC<CheckboxProps> = ({
         className="checkbox-input"
         readOnly
       />
-      <span className={`checkbox-box ${checked ? "checked" : ""}`}>
+      <span className={classNames({ args: ["checkbox-box", { checked: checked }] })}>
         {icon}
       </span>
     </label>

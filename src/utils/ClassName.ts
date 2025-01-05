@@ -1,11 +1,11 @@
 export const classNames = ({ args }: { args: any[] }) => {
   let classes = [];
 
-  for (let arg of args) {
+  for (const arg of args) {
     if (typeof arg === "string") {
       classes.push(arg);
     } else if (typeof arg === "object" && arg !== null) {
-      for (let key in arg) {
+      for (const key in arg) {
         if (arg[key]) {
           classes.push(key);
         }

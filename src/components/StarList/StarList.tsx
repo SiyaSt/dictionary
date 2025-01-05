@@ -18,8 +18,11 @@ export const StarList:FC<StarListProps> = ({words, setWords}) => {
 
   const toggleStarWords = (word: Word) => {
     const updatedWord = { ...word, checked: !word.checked };
-    const updatedWords = words.map(w => w.word === word.word ? updatedWord : w);
-    setWords(updatedWords);
+
+    const updatedStarWords = words.some((sw) => sw.word === word.word)
+      ? words.filter((sw) => sw.word !== word.word)
+      : [...words, updatedWord];
+    setWords(updatedStarWords);
   };
 
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>, word: Word) => {
@@ -62,7 +65,7 @@ export const StarList:FC<StarListProps> = ({words, setWords}) => {
   };
 
   return (
-    <ul className="star-list">
+    <ul className="word-list">
       {words.map((word, index) => renderWord(word, index))}
     </ul>
   );
