@@ -1,7 +1,7 @@
 import { Word } from "../../types/types";
 import { FC, useEffect, useState } from "react";
 import { Checkbox, WordItem } from "../../components";
-import { ReactComponent as Star } from "./Star.svg";
+import { ReactComponent as Star } from "../../imges/Star.svg";
 import "./WordsList.scss";
 
 interface WordsListProps {
@@ -9,30 +9,33 @@ interface WordsListProps {
 }
 
 export const WordsList: FC<WordsListProps> = ({ results }) => {
-  const [starWords, setFavorites] = useState<string[]>(
+  const [starWords, setStarWords] = useState<Word[]>(
     JSON.parse(localStorage.getItem("starWords") || "[]"),
   );
 
   useEffect(() => {
     localStorage.setItem("starWords", JSON.stringify(starWords));
-    console.log(localStorage.getItem("starWords"));
   }, [starWords]);
 
-  const toggleStarWords = (word: string) => {
-    if (starWords.includes(word)) {
-      setFavorites(starWords.filter((star) => star !== word));
-    } else {
-      setFavorites([...starWords, word]);
-    }
+  const toggleStarWords = (word: Word) => {
+    const updatedWord = { ...word, checked: !word.checked };
+
+    const updatedStarWords = starWords.some((sw) => sw.word === word.word)
+      ? starWords.filter((sw) => sw.word !== word.word)
+      : [...starWords, updatedWord];
+    setStarWords(updatedStarWords);
   };
 
   const renderWord = (result: Word) => {
+    const isStarred = starWords.some(
+      (starWord) => starWord.word === result.word,
+    );
     return (
       <li key={result.word}>
         <WordItem result={result} />
         <Checkbox
-          checked={false}
-          onChange={() => toggleStarWords(result.word)}
+          checked={isStarred}
+          onChange={() => toggleStarWords({ ...result, checked: isStarred })}
           className="checkbox"
           icon={<Star className="star-icon" />}
         />

@@ -4,7 +4,6 @@
   list-style: none;
   width: 80%;
   padding: 0;
-
   li {
     @include flexbox;
     background: $accent-color_light;
@@ -29,6 +28,9 @@
         max-height: 200px;
         overflow: auto;
       }
+    }
+    .handle {
+      cursor: grab;
     }
   }
 }

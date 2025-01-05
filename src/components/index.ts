@@ -5,5 +5,6 @@ import { Checkbox } from "./CheckBox/CheckBox";
 import { WordDef } from "./WordDef/WordDef";
 import { WordsList } from "./WordsList/WordsList";
 import {WordItem} from "./WordItem/WordItem";
+import {StarList} from "./StarList/StarList";
 
-export { Layout, Header, Aside, Checkbox, WordsList, WordDef, WordItem };
+export { Layout, Header, Aside, Checkbox, WordsList, WordDef, WordItem, StarList };
