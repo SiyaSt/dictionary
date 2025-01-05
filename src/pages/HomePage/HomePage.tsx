@@ -5,7 +5,7 @@ import {
   selectDictionaryLoading,
   selectDictionaryResults,
 } from "../../redux/dictionarySelectors";
-import { InputBase, WordsList } from "../../components";
+import { InputBase, Loader, WordsList } from "../../components";
 import { Aside } from "../../components";
 import "./HomePage.scss";
 
@@ -25,10 +25,11 @@ export const HomePage = () => {
     return <h3>Words not found!</h3>;
   };
 
+
   return (
     <div className="home-page">
       <Aside input={<InputBase />} filter={false} />
-      {loading ? <p>Loading...</p> : words()}
+      {loading ? <Loader/> : words()}
       {error && <p>{error}</p>}
     </div>
   );
