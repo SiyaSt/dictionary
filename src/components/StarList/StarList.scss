@@ -1,9 +1,10 @@
 @use "../../styles/base" as *;
 
-.word-list {
+.star-list {
   list-style: none;
   width: 80%;
   padding: 0;
+
   li {
     @include flexbox;
     background: $accent-color_light;
@@ -29,6 +30,7 @@
         overflow: auto;
       }
     }
+
     .handle {
       cursor: grab;
     }
@@ -36,7 +38,14 @@
 }
 
 @media screen and (max-width: 800px) {
-  .word-list{
+  .star-list {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+
+  .def {
+    display: none;
   }
 }

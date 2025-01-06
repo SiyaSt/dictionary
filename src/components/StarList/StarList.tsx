@@ -65,7 +65,7 @@ export const StarList:FC<StarListProps> = ({words, setWords}) => {
   };
 
   return (
-    <ul className="word-list">
+    <ul className="star-list">
       {words.map((word, index) => renderWord(word, index))}
     </ul>
   );
