@@ -9,6 +9,7 @@ import { StarList } from "./StarList/StarList";
 import { InputBase } from "./Input/InputBase";
 import { InputStar } from "./Input/InputStar";
 import { Loader } from "./Loader/Loader";
+import { CustomLink } from "./CustomLink/CustomLink";
 
 export {
   Layout,
@@ -22,4 +23,5 @@ export {
   InputBase,
   InputStar,
   Loader,
+  CustomLink
 };

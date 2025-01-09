@@ -8,11 +8,15 @@
   border-radius: 4px;
 }
 
-.link{
+.link {
   text-decoration: none;
   color: $accent-color_light;
   font-size: 1.5rem;
   font-weight: 600;
+
+  &.active {
+    color: $text-color;
+  }
 }
 
 .link:nth-child(2):before {
