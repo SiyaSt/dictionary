@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { Word } from "../../types/types";
 import { WordItem } from "../WordItem/WordItem";
 import { Checkbox } from "../CheckBox/CheckBox";
@@ -12,9 +12,7 @@ interface StarListProps {
 
 export const StarList:FC<StarListProps> = ({words, setWords}) => {
 
-  useEffect(() => {
-    localStorage.setItem("starWords", JSON.stringify(words));
-  }, [words]);
+
 
   const toggleStarWords = (word: Word) => {
     const updatedWord = { ...word, checked: !word.checked };

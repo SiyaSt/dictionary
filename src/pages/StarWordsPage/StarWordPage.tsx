@@ -1,5 +1,5 @@
 import { Aside, InputStar, StarList } from "../../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Word } from "../../types/types";
 import { useSearchParams } from "react-router-dom";
 import "./StarWordPage.scss";
@@ -11,6 +11,10 @@ export const StarWordPage = () => {
   });
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("starWords", JSON.stringify(words));
+  }, [words]);
 
   const handleFilterChange = (filterParam: string) => {
     setSearchParams({ filter: filterParam });
