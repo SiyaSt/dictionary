@@ -1,36 +1,27 @@
-import {
-  ChangeEvent,
-  KeyboardEvent as ReactKeyboardEvent,
-  useState,
-} from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { setSearchQuery } from "../../redux/dictionarySlice";
 import { fetchDictionaryEntries } from "../../redux/dictionaryThunk";
+import { useDebounce } from "../../utils/useDebounce";
 
 export const InputBase = () => {
-  const [searchQuery, setSearchQueryState] = useState("");
+  const [searchQueryState, setSearchQueryState] = useState("");
   const dispatch = useDispatch<AppDispatch>();
+  const debouncedSearchQuery = useDebounce(searchQueryState, 300);
 
-  const handleKeyDown = (event: ReactKeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      handleSearch();
+  useEffect(() => {
+    if (debouncedSearchQuery) {
+      dispatch(setSearchQuery(debouncedSearchQuery));
+      dispatch(fetchDictionaryEntries(debouncedSearchQuery));
     }
-  };
-  const handleSearch = () => {
-    dispatch(setSearchQuery(searchQuery));
-    dispatch(fetchDictionaryEntries(searchQuery));
-  };
+  }, [debouncedSearchQuery, dispatch]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQueryState(event.target.value);
   };
+
   return (
-    <input
-      type="text"
-      value={searchQuery}
-      onChange={handleInputChange}
-      onKeyDown={handleKeyDown}
-    />
+    <input type="text" value={searchQueryState} onChange={handleInputChange} />
   );
 };
