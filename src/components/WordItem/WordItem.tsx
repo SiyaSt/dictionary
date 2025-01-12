@@ -1,28 +1,17 @@
-import { classNames } from "../../utils/ClassName";
-import { WordDef } from "../../components";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Word } from "../../types/types";
 
-interface WordItemProps{
+interface WordItemProps {
   result: Word;
+  toggleExpanded: (value: string) => void;
 }
 
-export const WordItem: FC<WordItemProps> = ({result}) => {
-  const [expandedWords, setExpandedWords] = useState<Record<string, boolean>>(
-    {},
-  );
-
-  const toggleExpanded = (word: string) => {
-    setExpandedWords((prev) => ({ ...prev, [word]: !prev[word] }));
-  };
-
-  const isExpanded = expandedWords[result.word] || false;
-
+export const WordItem: FC<WordItemProps> = ({ result, toggleExpanded }) => {
   return (
-    <div className={classNames({ args: ["word", { isExpanded: isExpanded }] })}>
+    <div className="word">
       <strong onClick={() => toggleExpanded(result.word)}>{result.word}</strong>
       <i>{result.type}</i>
-      <WordDef isExpanded={isExpanded} definition={result.definition} />
+      <span className="def">{result.definition}</span>
     </div>
   );
 };

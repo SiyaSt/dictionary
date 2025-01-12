@@ -1,17 +1,29 @@
 import { FC } from "react";
+import "./WordDef.scss";
 
 interface WordDefProps {
   isExpanded: boolean;
   definition: string;
+  pronunciation: string;
 }
 
-export const WordDef: FC<WordDefProps> = ({isExpanded, definition}) => {
+export const WordDef: FC<WordDefProps> = ({
+  isExpanded,
+  definition,
+  pronunciation,
+}) => {
   return (
     <>
-      {isExpanded ? (
-        <span className="def-details">{definition}</span>
-      ) : (
-        <span className="def">{definition}</span>
+      {isExpanded && (
+        <div className="details-section">
+          <hr />
+          <div className="detail-item">
+            <span className="detail-label">Definition:</span> {definition}
+          </div>
+          <div className="detail-item">
+            <span className="detail-label">Pronunciation:</span> {pronunciation}
+          </div>
+        </div>
       )}
     </>
   );

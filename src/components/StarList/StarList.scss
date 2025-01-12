@@ -6,35 +6,36 @@
   padding: 0;
 
   li {
-    @include flexbox;
     background: $accent-color_light;
     justify-content: space-between;
     margin-top: 10px;
     border-radius: 4px;
 
-    .word {
+    .word-item {
       @include flexbox;
-      width: 90%;
-      gap: 10px;
-      transition: max-height 0.3s ease-in-out;
 
-      .def {
-        width: 900px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      .word {
+        @include flexbox;
+        width: 95%;
+        gap: 10px;
+        transition: max-height 0.3s ease-in-out;
+
+        .def {
+          width: 900px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .handle {
+          cursor: grab;
+        }
       }
 
-      &.expanded {
-        max-height: 200px;
-        overflow: auto;
-      }
-    }
-
-    .handle {
-      cursor: grab;
     }
   }
+
+
 }
 
 @media screen and (max-width: 800px) {

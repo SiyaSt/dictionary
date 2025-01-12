@@ -17,7 +17,8 @@ export const fetchDictionaryData = async (query: string): Promise<Word[]> => {
         word: entry.meta.id,
         type: entry.fl,
         definition: entry.shortdef[0],
-        checked: false
+        checked: false,
+        pronunciation: entry.hwi.hw
       }));
 
       words.sort((a, b) => a.word.localeCompare(b.word));

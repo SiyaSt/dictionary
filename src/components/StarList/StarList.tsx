@@ -1,18 +1,23 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Word } from "../../types/types";
 import { WordItem } from "../WordItem/WordItem";
 import { Checkbox } from "../CheckBox/CheckBox";
 import { ReactComponent as Star } from "../../imges/Star.svg";
-import "./StarList.scss"
+import "./StarList.scss";
+import { WordDef } from "../WordDef/WordDef";
 
 interface StarListProps {
   words: Word[];
-  setWords: (value: Word[]) => void
+  setWords: (value: Word[]) => void;
 }
 
-export const StarList:FC<StarListProps> = ({words, setWords}) => {
-
-
+export const StarList: FC<StarListProps> = ({ words, setWords }) => {
+  const [expandedWords, setExpandedWords] = useState<Record<string, boolean>>(
+    {},
+  );
+  const toggleExpanded = (word: string) => {
+    setExpandedWords((prev) => ({ ...prev, [word]: !prev[word] }));
+  };
 
   const toggleStarWords = (word: Word) => {
     const updatedWord = { ...word, checked: !word.checked };
@@ -34,7 +39,9 @@ export const StarList:FC<StarListProps> = ({words, setWords}) => {
   const handleDrop = (e: React.DragEvent<HTMLLIElement>, index: number) => {
     e.preventDefault();
     const draggedWord = e.dataTransfer.getData("text/plain");
-    const draggedWordIndex = words.findIndex(word => word.word === draggedWord);
+    const draggedWordIndex = words.findIndex(
+      (word) => word.word === draggedWord,
+    );
     const updatedWords = [...words];
     const [removed] = updatedWords.splice(draggedWordIndex, 1);
     updatedWords.splice(index, 0, removed);
@@ -42,6 +49,7 @@ export const StarList:FC<StarListProps> = ({words, setWords}) => {
   };
 
   const renderWord = (result: Word, index: number) => {
+    const isExpanded = expandedWords[result.word] || false;
     return (
       <li
         key={result.word}
@@ -50,13 +58,21 @@ export const StarList:FC<StarListProps> = ({words, setWords}) => {
         onDragOver={handleDragOver}
         onDrop={(e) => handleDrop(e, index)}
       >
-        <span className="handle">☰</span>
-        <WordItem result={result} />
-        <Checkbox
-          checked={result.checked}
-          onChange={() => toggleStarWords(result)}
-          className="checkbox"
-          icon={<Star className="icon" />}
+        <div className="word-item">
+          <span className="handle">☰</span>
+          <WordItem result={result} toggleExpanded={toggleExpanded} />
+          <Checkbox
+            checked={result.checked}
+            onChange={() => toggleStarWords(result)}
+            className="checkbox"
+            icon={<Star className="icon" />}
+          />
+        </div>
+
+        <WordDef
+          definition={result.definition}
+          pronunciation={result.pronunciation}
+          isExpanded={isExpanded}
         />
       </li>
     );
