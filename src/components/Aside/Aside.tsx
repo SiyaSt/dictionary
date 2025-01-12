@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useMemo } from "react";
 import "./Aside.scss";
 import { Filter } from "../Filter/Filter";
 import { useSearchParams } from "react-router-dom";
@@ -11,15 +11,20 @@ interface AsideProps {
 }
 
 export const Aside: FC<AsideProps> = ({ input, onFilterChange, filter }) => {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedFilters = useMemo(() => {
+    const filterParam = searchParams.get("filter");
+    return filterParam ? filterParam.split(",") : [];
+  }, [searchParams]);
+
   const optionsFilter: Options[] = [
     { value: "noun", label: "Noun" },
     { value: "verb", label: "Verb" },
     { value: "adjective", label: "Adjective" },
   ];
 
-  const handleFilterChange = (selectedFilters: string[]) => {
-    const filterParam = selectedFilters.join(",");
+  const handleFilterChange = (newSelectedFilters: string[]) => {
+    const filterParam = newSelectedFilters.join(",");
     setSearchParams({ filter: filterParam });
     if (onFilterChange) {
       onFilterChange(filterParam);
@@ -29,9 +34,9 @@ export const Aside: FC<AsideProps> = ({ input, onFilterChange, filter }) => {
   return (
     <div className="aside">
       {input}
-      {filter ? (
-        <Filter options={optionsFilter} onChange={handleFilterChange} />
-      ) : null}
+      {filter && (
+        <Filter options={optionsFilter} onChange={handleFilterChange} selectedFilters={selectedFilters} />
+      )}
     </div>
   );
 };
