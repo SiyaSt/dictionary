@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDebounce } from "../../utils/useDebounce";
 
 interface DebounceInputProps {
@@ -8,7 +8,8 @@ interface DebounceInputProps {
 }
 
 export const InputStar: FC<DebounceInputProps> = ({ value, onChange, delay }) => {
-  const debouncedValue = useDebounce(value, delay);
+  const [inputValue, setInputValue] = useState(value);
+  const debouncedValue = useDebounce(inputValue, delay);
 
   useEffect(() => {
     onChange(debouncedValue);
@@ -17,8 +18,8 @@ export const InputStar: FC<DebounceInputProps> = ({ value, onChange, delay }) =>
   return (
     <input
       type="text"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
     />
   );
 };
