@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
 import {
   selectDictionaryError,
   selectDictionaryLoading,
@@ -8,15 +6,12 @@ import {
 import { InputBase, Loader, WordsList } from "../../components";
 import { Aside } from "../../components";
 import "./HomePage.scss";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 export const HomePage = () => {
-  const results = useSelector((state: RootState) =>
-    selectDictionaryResults(state),
-  );
-  const loading = useSelector((state: RootState) =>
-    selectDictionaryLoading(state),
-  );
-  const error = useSelector((state: RootState) => selectDictionaryError(state));
+  const results = useAppSelector(selectDictionaryResults);
+  const loading = useAppSelector(selectDictionaryLoading);
+  const error = useAppSelector(selectDictionaryError);
 
   const words = () => {
     if (results.length > 0) {
@@ -25,11 +20,10 @@ export const HomePage = () => {
     return <h3>Words not found!</h3>;
   };
 
-
   return (
     <div className="home-page">
       <Aside input={<InputBase />} filter={false} />
-      {loading ? <Loader/> : words()}
+      {loading ? <Loader /> : words()}
       {error && <p>{error}</p>}
     </div>
   );

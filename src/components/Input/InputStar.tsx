@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { useDebounce } from "../../utils/useDebounce";
+import { useDebounce } from "../../hooks/useDebounce";
 
 interface DebounceInputProps {
   value: string;

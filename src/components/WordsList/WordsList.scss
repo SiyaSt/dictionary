@@ -12,9 +12,10 @@
 
     .word-item {
       @include flexbox;
+      width: 100%;
       .word {
         @include flexbox;
-        width: 80%;
+        width: 90%;
         gap: 10px;
         transition: max-height 0.3s ease-in-out;
 

@@ -1,13 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
 import { setSearchQuery } from "../../redux/dictionarySlice";
 import { fetchDictionaryEntries } from "../../redux/dictionaryThunk";
-import { useDebounce } from "../../utils/useDebounce";
+import { useDebounce } from "../../hooks/useDebounce";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 
 export const InputBase = () => {
   const [searchQueryState, setSearchQueryState] = useState("");
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const debouncedSearchQuery = useDebounce(searchQueryState, 300);
 
   useEffect(() => {
