@@ -8,8 +8,8 @@ interface WordItemProps {
 
 export const WordItem: FC<WordItemProps> = ({ result, toggleExpanded }) => {
   return (
-    <div className="word">
-      <strong onClick={() => toggleExpanded(result.word)}>{result.word}</strong>
+    <div className="word" onClick={() => toggleExpanded(result.word)}>
+      <strong >{result.word}</strong>
       <i>{result.type}</i>
       <span className="def">{result.definition}</span>
     </div>
