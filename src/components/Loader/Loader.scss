@@ -5,35 +5,21 @@
   justify-content: center;
   align-items: center;
   padding: 30px;
-}
 
-.wave-point {
-  width: 10px;
-  height: 10px;
-  background-color: $accent-color_dark;
-  border-radius: 50%;
-  margin: 0 5px;
-  animation: wave 1s ease-in-out infinite;
-}
+  .wave-point {
+    width: 10px;
+    height: 10px;
+    background-color: $accent-color_dark;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: wave 1s ease-in-out infinite;
+  }
 
-.wave-point:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.wave-point:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.wave-point:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.wave-point:nth-child(4) {
-  animation-delay: 0.3s;
-}
-
-.wave-point:nth-child(5) {
-  animation-delay: 0.4s;
+  @for $i from 1 through 5 {
+    .wave-point:nth-child(#{$i}) {
+      animation-delay: $i * 0.1s;
+    }
+  }
 }
 
 

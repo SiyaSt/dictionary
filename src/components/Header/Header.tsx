@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { FC } from "react";
+import { CustomLink } from "../../components";
 import "./Header.scss"
-import { CustomLink } from "../CustomLink/CustomLink";
 
 export const Header: FC = () => {
 

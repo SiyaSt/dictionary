@@ -5,8 +5,8 @@ import {
 } from "../../redux/dictionarySelectors";
 import { InputBase, Loader, WordsList } from "../../components";
 import { Aside } from "../../components";
-import "./HomePage.scss";
 import { useAppSelector } from "../../hooks/reduxHooks";
+import "./HomePage.scss";
 
 export const HomePage = () => {
   const results = useAppSelector(selectDictionaryResults);

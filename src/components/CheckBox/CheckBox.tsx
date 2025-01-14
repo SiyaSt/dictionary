@@ -1,6 +1,6 @@
 import { FC, ReactNode, useState } from "react";
-import "./CheckBox.scss";
 import { classNames } from "../../utils/ClassName";
+import "./CheckBox.scss";
 
 interface CheckboxProps {
   checked: boolean;

@@ -1,6 +1,2 @@
-import { HomePage } from "./HomePage/HomePage";
-import { StarWordPage } from "./StarWordsPage/StarWordPage";
-export {
-  HomePage,
-  StarWordPage
-}
+export { HomePage } from "./HomePage/HomePage";
+export { StarWordPage } from "./StarWordsPage/StarWordPage";

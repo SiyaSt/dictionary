@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
 import { Word } from "../../types/types";
-import { WordItem } from "../WordItem/WordItem";
-import { Checkbox } from "../CheckBox/CheckBox";
+import { WordItem } from "../../components";
+import { Checkbox } from "../../components";
 import { ReactComponent as Star } from "../../imges/Star.svg";
+import { WordDef } from "../../components";
 import "./StarList.scss";
-import { WordDef } from "../WordDef/WordDef";
 
 interface StarListProps {
   words: Word[];

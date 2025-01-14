@@ -1,6 +1,6 @@
 import { Word } from "../../types/types";
 import { FC, useEffect, useState } from "react";
-import { Checkbox, WordDef, WordItem } from "../../components"; // Removed WordItem import
+import { Checkbox, WordDef, WordItem } from "../../components";
 import { ReactComponent as Star } from "../../imges/Star.svg";
 import "./WordsList.scss";
 

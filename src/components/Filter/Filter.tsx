@@ -1,7 +1,7 @@
-import { Checkbox } from "../CheckBox/CheckBox";
-import { Options } from "../../types/types";
 import { FC } from "react";
 import { ReactComponent as Square } from "../../imges/square.svg";
+import { Checkbox } from "../../components";
+import { Options } from "../../types/types";
 
 interface FilterProps {
   options: Options[];
@@ -9,8 +9,11 @@ interface FilterProps {
   selectedFilters: string[];
 }
 
-export const Filter: FC<FilterProps> = ({ options, onChange, selectedFilters }) => {
-
+export const Filter: FC<FilterProps> = ({
+  options,
+  onChange,
+  selectedFilters,
+}) => {
   const handleCheckboxChange = (value: string) => {
     const updatedFilters = selectedFilters.includes(value)
       ? selectedFilters.filter((filter) => filter !== value)

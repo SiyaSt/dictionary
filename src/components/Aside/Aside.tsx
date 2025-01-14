@@ -1,8 +1,8 @@
 import { FC, ReactNode, useMemo } from "react";
-import "./Aside.scss";
-import { Filter } from "../Filter/Filter";
 import { useSearchParams } from "react-router-dom";
 import { Options } from "../../types/types";
+import { Filter } from "../../components";
+import "./Aside.scss";
 
 interface AsideProps {
   input: ReactNode;
@@ -35,7 +35,11 @@ export const Aside: FC<AsideProps> = ({ input, onFilterChange, filter }) => {
     <div className="aside">
       {input}
       {filter && (
-        <Filter options={optionsFilter} onChange={handleFilterChange} selectedFilters={selectedFilters} />
+        <Filter
+          options={optionsFilter}
+          onChange={handleFilterChange}
+          selectedFilters={selectedFilters}
+        />
       )}
     </div>
   );
