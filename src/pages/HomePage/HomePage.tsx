@@ -1,7 +1,5 @@
 import {
-  selectDictionaryError,
-  selectDictionaryLoading,
-  selectDictionaryResults,
+  selectDictionaryResults, selectDictionaryStatus
 } from "../../redux/dictionarySelectors";
 import { InputBase, Loader, WordsList } from "../../components";
 import { Aside } from "../../components";
@@ -10,8 +8,7 @@ import "./HomePage.scss";
 
 export const HomePage = () => {
   const results = useAppSelector(selectDictionaryResults);
-  const loading = useAppSelector(selectDictionaryLoading);
-  const error = useAppSelector(selectDictionaryError);
+  const { loading, error } = useAppSelector(selectDictionaryStatus);
 
   const words = () => {
     if (results.length > 0) {

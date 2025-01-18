@@ -1,5 +1,22 @@
 import { RootState } from "../store/store";
+import { createSelector } from "reselect";
 
-export const selectDictionaryResults = (state: RootState) => state.dictionary.results;
-export const selectDictionaryLoading = (state: RootState) => state.dictionary.loading;
-export const selectDictionaryError = (state: RootState) => state.dictionary.error;
+const selectDictionary = (state: RootState) => state.dictionary;
+
+export const selectDictionaryResults = createSelector(
+  selectDictionary,
+  (dictionary) => dictionary.results,
+);
+
+export const selectDictionaryLoading = (state: RootState) =>
+  state.dictionary.loading;
+export const selectDictionaryError = (state: RootState) =>
+  state.dictionary.error;
+
+export const selectDictionaryStatus = createSelector(
+  [selectDictionaryLoading, selectDictionaryError],
+  (loading, error) => ({
+    loading: loading,
+    error: error,
+  }),
+);
