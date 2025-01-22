@@ -38,25 +38,23 @@ export const WordsList: FC<WordsListProps> = ({ results }) => {
     );
     const isExpanded = expandedWords[result.word] || false;
     return (
-      <li
-        key={result.word}
-      >
+      <li key={result.word}>
         <div className="word-item">
-        <WordItem result={result} toggleExpanded={toggleExpanded}/>
-        <Checkbox
-          checked={isStarred}
-          onChange={() => toggleStarWords({ ...result, checked: isStarred })}
-          className="checkbox"
-          icon={<Star className="icon" />}
-        />
+          <WordItem result={result} toggleExpanded={toggleExpanded} />
+          <Checkbox
+            checked={isStarred}
+            onChange={() => toggleStarWords({ ...result, checked: isStarred })}
+            className="checkbox"
+            icon={<Star className="icon" />}
+          />
         </div>
 
-        <WordDef
-          definition={result.definition}
-          pronunciation={result.pronunciation}
-          isExpanded={isExpanded}
-        />
-
+        {isExpanded && (
+          <WordDef
+            definition={result.definition}
+            pronunciation={result.pronunciation}
+          />
+        )}
       </li>
     );
   };

@@ -69,11 +69,12 @@ export const StarList: FC<StarListProps> = ({ words, setWords }) => {
           />
         </div>
 
-        <WordDef
-          definition={result.definition}
-          pronunciation={result.pronunciation}
-          isExpanded={isExpanded}
-        />
+        {isExpanded && (
+          <WordDef
+            definition={result.definition}
+            pronunciation={result.pronunciation}
+          />
+        )}
       </li>
     );
   };
