@@ -18,7 +18,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   const [checked, setChecked] = useState(initialChecked);
 
   const handleCheckboxChange = () => {
-    setChecked(!checked);
+    setChecked((prev) => !prev);
     onChange();
   };
 
