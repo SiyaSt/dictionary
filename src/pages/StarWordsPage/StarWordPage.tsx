@@ -1,4 +1,4 @@
-import { Aside, InputStar, StarList } from "../../components";
+import { Aside, Input, InputStar, StarList } from "../../components";
 import { useEffect, useState } from "react";
 import { Word } from "../../types/types";
 import { useSearchParams } from "react-router-dom";
@@ -41,11 +41,12 @@ export const StarWordPage = () => {
     searchTerm,
   );
 
+  const delay = 300;
   return (
     <div className="star-page">
       <Aside
         input={
-          <InputStar value={searchTerm} onChange={setSearchTerm} delay={300} />
+          <Input value={searchTerm} onChange={setSearchTerm} delay={delay} />
         }
         onFilterChange={handleFilterChange}
         filter={true}
