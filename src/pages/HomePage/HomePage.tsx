@@ -11,7 +11,7 @@ import "./HomePage.scss";
 export const HomePage = () => {
   const results = useAppSelector(selectDictionaryResults);
   const { loading, error } = useAppSelector(selectDictionaryStatus);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [, setSearchTerm] = useState("");
 
   const words = () => {
     if (results.length > 0) {

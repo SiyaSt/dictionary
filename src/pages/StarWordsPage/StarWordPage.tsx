@@ -1,4 +1,4 @@
-import { Aside, Input, InputStar, StarList } from "../../components";
+import { Aside, Input, StarList } from "../../components";
 import { useEffect, useState } from "react";
 import { Word } from "../../types/types";
 import { useSearchParams } from "react-router-dom";
