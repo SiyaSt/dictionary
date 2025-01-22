@@ -1,4 +1,6 @@
-export const classNames = ({ args }: {  args: (string | { [key: string]: boolean })[] }) => {
+type ClassNameArg = string | { [key: string]: boolean };
+
+export const classNames = (...args: ClassNameArg[]): string => {
   let classes = [];
 
   for (const arg of args) {

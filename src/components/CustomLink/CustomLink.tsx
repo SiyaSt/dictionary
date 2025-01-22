@@ -15,7 +15,7 @@ export const CustomLink: FC<CustomLinkProps> = ({
   ...props
 }) => {
   const match = useMatch(to);
-  const names = classNames({ args: [className, { active: !!match }] });
+  const names = classNames(className, { active: !!match });
 
   return (
     <Link to={to} className={names} {...props}>

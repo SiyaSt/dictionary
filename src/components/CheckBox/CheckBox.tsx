@@ -31,7 +31,7 @@ export const Checkbox: FC<CheckboxProps> = ({
         className="checkbox-input"
         readOnly
       />
-      <span className={classNames({ args: ["checkbox-box", { checked: checked }] })}>
+      <span className={classNames("checkbox-box", { checked: checked })}>
         {icon}
       </span>
     </label>
