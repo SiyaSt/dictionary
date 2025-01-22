@@ -1,4 +1,4 @@
-@use "../../styles/base" as *;
+@use "../../styles/variables" as *;
 
 :active,
 :hover,
@@ -12,7 +12,8 @@
   width: 100%;
   gap: 10px;
 }
-@media screen and (max-width: 800px){
+
+@media screen and (width <= 800px){
   .home-page{
     flex-direction: column;
   }

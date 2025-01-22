@@ -1,4 +1,4 @@
-@use "../../styles/base" as *;
+@use "../../styles/variables" as *;
 
 .word-list {
   list-style: none;
@@ -11,10 +11,13 @@
     border-radius: 4px;
 
     .word-item {
-      @include flexbox;
+      display: flex;
+      align-items: center;
       width: 100%;
+
       .word {
-        @include flexbox;
+        display: flex;
+        align-items: center;
         width: 90%;
         gap: 10px;
         transition: max-height 0.3s ease-in-out;
@@ -31,7 +34,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (width <= 800px) {
   .word-list {
     width: 100%;
   }

@@ -1,4 +1,4 @@
-@use "../../styles/base" as *;
+@use "../../styles/variables" as *;
 
 .checkbox {
   display: inline-flex;
@@ -16,14 +16,14 @@
     .icon {
       width: 30px;
       height: 30px;
-      fill: $accent-color_light;
+      fill: $accent-color-light;
       transition: fill 0.2s ease;
 
     }
 
     &.checked {
       .icon {
-        fill: $accent-color_dark;
+        fill: $accent-color-dark;
       }
     }
   }

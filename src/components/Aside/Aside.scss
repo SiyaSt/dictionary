@@ -1,8 +1,9 @@
-@use "../../styles/base" as *;
+@use "../../styles/variables" as *;
 
 
 .aside {
-  @include flexbox;
+  display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: flex-start;
   background: $background-color_dark;
@@ -14,7 +15,7 @@
 
   input {
     width: 80%;
-    border: 2px solid $accent-color_dark;
+    border: 2px solid $accent-color-dark;
     border-radius: 4px;
     height: 40px;
     background-image: url('../../imges/SearchMagnifyingGlass.svg');
@@ -29,7 +30,8 @@
 
   .filter {
     align-self: flex-start;
-    .filter-label {
+
+    &-label {
       display: flex;
       align-items: center;
     }
@@ -37,8 +39,9 @@
 
 }
 
-@media screen and (max-width: 800px) {
-  .aside{
+
+@media screen and (width <= 800px) {
+  .aside {
     width: 100%;
   }
 }

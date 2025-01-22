@@ -1,4 +1,4 @@
-@use "../../styles/base" as *;
+@use "../../styles/variables" as *;
 
 .star-list {
   list-style: none;
@@ -12,13 +12,17 @@
     border-radius: 4px;
 
     .word-item {
-      @include flexbox;
+      display: flex;
+      align-items: center;
       width: 100%;
+
       .word {
-        @include flexbox;
+        display: flex;
+        align-items: center;
         width: 90%;
         gap: 10px;
         transition: max-height 0.3s ease-in-out;
+
         .def {
           width: 900px;
           overflow: hidden;
@@ -37,14 +41,13 @@
 
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (width <= 800px) {
   .star-list {
     width: 100%;
   }
 }
 
-@media screen and (max-width: 550px) {
-
+@media screen and (width <= 550px) {
   .def {
     display: none;
   }
