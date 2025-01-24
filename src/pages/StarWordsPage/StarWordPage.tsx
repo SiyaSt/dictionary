@@ -53,7 +53,7 @@ export const StarWordPage = () => {
         onFilterChange={handleFilterChange}
         filter={true}
       />
-      <WordsList words={filteredWords} isStarWordPage={true}/>
+      <WordsList words={filteredWords} isStarWordPage={true} />
     </div>
   );
 };

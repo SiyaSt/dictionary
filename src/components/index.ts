@@ -6,7 +6,6 @@ export { WordDef } from "./WordDef/WordDef";
 export { WordsList } from "./WordsList/WordsList";
 export { WordItem } from "./WordItem/WordItem";
 export { Input } from "./Input/Input";
-export { InputStar } from "./Input/InputStar";
 export { Loader } from "./Loader/Loader";
 export { CustomLink } from "./CustomLink/CustomLink";
 export { Filter } from "./Filter/Filter";

@@ -3,6 +3,7 @@ import { setSearchQuery } from "../../redux/dictionarySlice";
 import { fetchDictionaryEntries } from "../../redux/dictionaryThunk";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useAppDispatch } from "../../hooks/reduxHooks";
+import { useLocation } from "react-router-dom";
 
 interface InputProps {
   value?: string;
@@ -14,14 +15,19 @@ export const Input: FC<InputProps> = ({ value = "", onChange, delay }) => {
   const [inputValue, setInputValue] = useState(value);
   const debouncedValue = useDebounce(inputValue, delay);
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   useEffect(() => {
-    onChange(debouncedValue);
-    if (debouncedValue) {
-      dispatch(setSearchQuery(debouncedValue));
-      dispatch(fetchDictionaryEntries(debouncedValue));
+    if (location.pathname === "/starWords") {
+      onChange(debouncedValue);
     }
-  }, [debouncedValue, onChange, dispatch]);
+    else {
+      if (debouncedValue) {
+        dispatch(setSearchQuery(debouncedValue));
+        dispatch(fetchDictionaryEntries(debouncedValue));
+      }
+    }
+  }, [debouncedValue, onChange, dispatch, location.pathname]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
