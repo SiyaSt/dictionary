@@ -6,7 +6,7 @@
   padding: 0;
 
   li {
-    background: $accent-color_light;
+    background: $accent-color-light;
     margin-top: 10px;
     border-radius: 4px;
 
@@ -29,6 +29,10 @@
           white-space: nowrap;
         }
 
+      }
+
+      .handle {
+        cursor: grab;
       }
     }
   }

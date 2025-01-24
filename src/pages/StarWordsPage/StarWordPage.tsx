@@ -1,20 +1,22 @@
-import { Aside, Input, StarList } from "../../components";
+import { Aside, Input, WordsList } from "../../components";
 import { useEffect, useState } from "react";
 import { Word } from "../../types/types";
 import { useSearchParams } from "react-router-dom";
 import "./StarWordPage.scss";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { selectStarWords } from "../../redux/starWordsSelector";
+import { setStarWords } from "../../redux/starWordsSlice";
 
 export const StarWordPage = () => {
-  const [words, setWords] = useState<Word[]>(() => {
-    const savedWords = localStorage.getItem("starWords");
-    return savedWords ? JSON.parse(savedWords) : [];
-  });
+  const dispatch = useDispatch();
+  const starWords = useAppSelector(selectStarWords);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("starWords", JSON.stringify(words));
-  }, [words]);
+    dispatch(setStarWords(starWords));
+  }, [starWords, dispatch]);
 
   const handleFilterChange = (filterParam: string) => {
     setSearchParams({ filter: filterParam });
@@ -36,7 +38,7 @@ export const StarWordPage = () => {
   };
 
   const filteredWords = filterWords(
-    words,
+    starWords,
     searchParams.get("filter") || "all",
     searchTerm,
   );
@@ -51,7 +53,7 @@ export const StarWordPage = () => {
         onFilterChange={handleFilterChange}
         filter={true}
       />
-      <StarList words={filteredWords} setWords={setWords} />
+      <WordsList words={filteredWords} isStarWordPage={true}/>
     </div>
   );
 };

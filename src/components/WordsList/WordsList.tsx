@@ -1,49 +1,76 @@
 import { Word } from "../../types/types";
-import { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Checkbox, WordDef, WordItem } from "../../components";
 import { ReactComponent as Star } from "../../imges/Star.svg";
 import "./WordsList.scss";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { setStarWords, toggleStarWord } from "../../redux/starWordsSlice";
+import { selectStarWords } from "../../redux/starWordsSelector";
 
 interface WordsListProps {
-  results: Word[];
+  words: Word[];
+  isStarWordPage: boolean;
 }
 
-export const WordsList: FC<WordsListProps> = ({ results }) => {
-  const [starWords, setStarWords] = useState<Word[]>(
-    JSON.parse(localStorage.getItem("starWords") || "[]"),
-  );
+export const WordsList: FC<WordsListProps> = ({
+  words,
+  isStarWordPage,
+}) => {
+  const dispatch = useDispatch();
+  const starWords = useAppSelector(selectStarWords);
   const [expandedWords, setExpandedWords] = useState<Record<string, boolean>>(
     {},
   );
 
-  useEffect(() => {
-    localStorage.setItem("starWords", JSON.stringify(starWords));
-  }, [starWords]);
-
   const toggleStarWords = (word: Word) => {
-    const updatedWord = { ...word, checked: !word.checked };
-    const updatedStarWords = starWords.some((sw) => sw.word === word.word)
-      ? starWords.filter((sw) => sw.word !== word.word)
-      : [...starWords, updatedWord];
-    setStarWords(updatedStarWords);
+    dispatch(toggleStarWord(word));
   };
 
   const toggleExpanded = (word: string) => {
     setExpandedWords((prev) => ({ ...prev, [word]: !prev[word] }));
   };
 
-  const renderWord = (result: Word) => {
-    const isStarred = starWords.some(
-      (starWord) => starWord.word === result.word,
+  const handleDragStart = (e: React.DragEvent<HTMLLIElement>, word: Word) => {
+    if (!isStarWordPage) return;
+    e.dataTransfer.setData("text/plain", word.word);
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+    if (!isStarWordPage) return;
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLLIElement>, index: number) => {
+    if (!isStarWordPage) return;
+    e.preventDefault();
+    const draggedWord = e.dataTransfer.getData("text/plain");
+    const draggedWordIndex = words.findIndex(
+      (word) => word.word === draggedWord,
     );
-    const isExpanded = expandedWords[result.word] || false;
+    const updatedWords = [...words];
+    const [removed] = updatedWords.splice(draggedWordIndex, 1);
+    updatedWords.splice(index, 0, removed);
+    dispatch(setStarWords(updatedWords));
+  };
+
+  const renderWord = (word: Word, index: number) => {
+    const isStarred = starWords.some((starWord) => starWord.word === word.word);
+    const isExpanded = expandedWords[word.word] || false;
     return (
-      <li key={result.word}>
+      <li
+        key={word.word}
+        draggable={isStarWordPage}
+        onDragStart={(e) => handleDragStart(e, word)}
+        onDragOver={handleDragOver}
+        onDrop={(e) => handleDrop(e, index)}
+      >
         <div className="word-item">
-          <WordItem result={result} toggleExpanded={toggleExpanded} />
+          {isStarWordPage && <span className="handle">☰</span>}
+          <WordItem result={word} toggleExpanded={toggleExpanded} />
           <Checkbox
             checked={isStarred}
-            onChange={() => toggleStarWords({ ...result, checked: isStarred })}
+            onChange={() => toggleStarWords(word)}
             className="checkbox"
             icon={<Star className="icon" />}
           />
@@ -51,13 +78,17 @@ export const WordsList: FC<WordsListProps> = ({ results }) => {
 
         {isExpanded && (
           <WordDef
-            definition={result.definition}
-            pronunciation={result.pronunciation}
+            definition={word.definition}
+            pronunciation={word.pronunciation}
           />
         )}
       </li>
     );
   };
 
-  return <ul className="word-list">{results.map(renderWord)}</ul>;
+  return (
+    <ul className="word-list">
+      {words.map((word, index) => renderWord(word, index))}
+    </ul>
+  );
 };

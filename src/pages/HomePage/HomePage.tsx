@@ -15,7 +15,7 @@ export const HomePage = () => {
 
   const words = () => {
     if (results.length > 0) {
-      return <WordsList results={results} />;
+      return <WordsList words={results} isStarWordPage={false}/>;
     }
     return <h3>Words not found!</h3>;
   };
