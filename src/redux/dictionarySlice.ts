@@ -1,15 +1,16 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Word } from "../types/types";
+import { fetchDictionaryEntries } from "./dictionaryThunk";
 
 interface DictionaryState {
   searchQuery: string;
   results: Word[];
   loading: boolean;
-  error: string | null;
+  error: string | null | undefined;
 }
 
 const initialState: DictionaryState = {
-  searchQuery: '',
+  searchQuery: "",
   results: [],
   loading: false,
   error: null,
@@ -22,17 +23,23 @@ const dictionarySlice = createSlice({
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
     },
-    setResults: (state, action: PayloadAction<Word[]>) => {
-      state.results = action.payload;
-    },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action: PayloadAction<string | null>) => {
-      state.error = action.payload;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchDictionaryEntries.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchDictionaryEntries.fulfilled, (state, action: PayloadAction<Word[]>) => {
+        state.loading = false;
+        state.results = action.payload;
+      })
+      .addCase(fetchDictionaryEntries.rejected, (state) => {
+        state.loading = false;
+        state.error = "Error";
+      });
   },
 });
 
-export const { setSearchQuery, setResults, setLoading, setError } = dictionarySlice.actions;
+export const { setSearchQuery } = dictionarySlice.actions;
 export default dictionarySlice.reducer;
