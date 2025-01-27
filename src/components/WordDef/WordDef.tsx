@@ -11,7 +11,6 @@ export const WordDef: FC<WordDefProps> = ({
   pronunciation,
 }) => {
   return (
-    <>
         <div className="details-section">
           <hr />
           <div className="detail-item">
@@ -21,6 +20,5 @@ export const WordDef: FC<WordDefProps> = ({
             <span className="detail-label">Pronunciation:</span> {pronunciation}
           </div>
         </div>
-    </>
   );
 };
