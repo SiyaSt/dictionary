@@ -23,7 +23,7 @@ export default [
     rules: {
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
-      "react/jsx-fragments": ["error", "element"]
+      "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
     },
   },
 ];

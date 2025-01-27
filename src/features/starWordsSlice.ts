@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Word } from "../types/types";
+import { Word } from "types/types";
 
 interface StarWordsState {
   starWords: Word[];

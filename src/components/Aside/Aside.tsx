@@ -1,7 +1,7 @@
 import { FC, ReactNode, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Options } from "../../types/types";
-import { Filter } from "../../components";
+import { Options } from "types/types";
+import { Filter } from "components";
 import "./Aside.scss";
 
 interface AsideProps {

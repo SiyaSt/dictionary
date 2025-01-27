@@ -1,12 +1,12 @@
-import { Word } from "../../types/types";
+import { Word } from "types/types";
 import React, { FC, useState } from "react";
-import { Checkbox, WordDef, WordItem } from "../../components";
-import { ReactComponent as Star } from "../../imges/Star.svg";
-import "./WordsList.scss";
+import { Checkbox, WordDef, WordItem } from "components";
+import { ReactComponent as Star } from "imges/Star.svg";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../hooks/reduxHooks";
-import { setStarWords, toggleStarWord } from "../../redux/starWordsSlice";
-import { selectStarWords } from "../../redux/starWordsSelector";
+import { useAppSelector } from "hooks/reduxHooks";
+import { setStarWords, toggleStarWord } from "features/starWordsSlice";
+import { selectStarWords } from "features/starWordsSelector";
+import "./WordsList.scss";
 
 interface WordsListProps {
   words: Word[];

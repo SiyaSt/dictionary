@@ -1,5 +1,5 @@
 import { FC, ReactNode, useState } from "react";
-import { classNames } from "../../utils/ClassName";
+import { classNames } from "utils/ClassName";
 import "./CheckBox.scss";
 
 interface CheckboxProps {

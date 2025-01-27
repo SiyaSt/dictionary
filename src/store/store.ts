@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import dictionaryReducer from "../redux/dictionarySlice";
-import starWordsReducer from "../redux/starWordsSlice";
+import dictionaryReducer from "features/dictionarySlice";
+import starWordsReducer from "features/starWordsSlice";
 
 export const store = configureStore({
   reducer: {

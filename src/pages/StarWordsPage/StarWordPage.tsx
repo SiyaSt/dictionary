@@ -1,12 +1,12 @@
-import { Aside, Input, WordsList } from "../../components";
+import { Aside, Input, WordsList } from "components";
 import { useEffect, useState } from "react";
-import { Word } from "../../types/types";
+import { Word } from "types/types";
 import { useSearchParams } from "react-router-dom";
-import "./StarWordPage.scss";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../hooks/reduxHooks";
-import { selectStarWords } from "../../redux/starWordsSelector";
-import { setStarWords } from "../../redux/starWordsSlice";
+import { useAppSelector } from "hooks/reduxHooks";
+import { selectStarWords } from "features/starWordsSelector";
+import { setStarWords } from "features/starWordsSlice";
+import "./StarWordPage.scss";
 
 export const StarWordPage = () => {
   const dispatch = useDispatch();

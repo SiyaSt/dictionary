@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchDictionaryData } from "./dictionaryApi";
+import { fetchDictionaryData } from "features/dictionaryApi";
 
 export const fetchDictionaryEntries = createAsyncThunk(
   "dictionary/fetchEntries",

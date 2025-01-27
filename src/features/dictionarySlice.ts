@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Word } from "../types/types";
-import { fetchDictionaryEntries } from "./dictionaryThunk";
+import { Word } from "types/types";
+import { fetchDictionaryEntries } from "features/dictionaryThunk";
 
 interface DictionaryState {
   searchQuery: string;

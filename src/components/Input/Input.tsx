@@ -1,9 +1,10 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { setSearchQuery } from "../../redux/dictionarySlice";
-import { fetchDictionaryEntries } from "../../redux/dictionaryThunk";
-import { useDebounce } from "../../hooks/useDebounce";
-import { useAppDispatch } from "../../hooks/reduxHooks";
+import { setSearchQuery } from "features/dictionarySlice";
+import { fetchDictionaryEntries } from "features/dictionaryThunk";
+import { useDebounce } from "hooks/useDebounce";
+import { useAppDispatch } from "hooks/reduxHooks";
 import { useLocation } from "react-router-dom";
+
 
 interface InputProps {
   value?: string;

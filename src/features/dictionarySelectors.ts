@@ -1,4 +1,4 @@
-import { RootState } from "../store/store";
+import { RootState } from "store/store";
 import { createSelector } from "reselect";
 
 const selectDictionary = (state: RootState) => state.dictionary;

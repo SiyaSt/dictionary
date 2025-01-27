@@ -1,10 +1,10 @@
 import {
   selectDictionaryResults,
   selectDictionaryStatus,
-} from "../../redux/dictionarySelectors";
-import { Input, Loader, WordsList } from "../../components";
-import { Aside } from "../../components";
-import { useAppSelector } from "../../hooks/reduxHooks";
+} from "features/dictionarySelectors";
+import { Input, Loader, WordsList } from "components";
+import { Aside } from "components";
+import { useAppSelector } from "hooks/reduxHooks";
 import { useState } from "react";
 import "./HomePage.scss";
 

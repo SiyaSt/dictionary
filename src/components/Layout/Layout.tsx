@@ -1,4 +1,4 @@
-import { Header } from "../../components";
+import { Header } from "components";
 import { Outlet } from "react-router-dom";
 import { FC } from "react";
 
