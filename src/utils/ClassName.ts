@@ -1,23 +1,27 @@
-type ClassNameArg = string | { [key: string]: boolean };
+type ClassNameArg = string | { [key: string]: boolean } | ClassNameArg[];
 
 export const classNames = (...args: ClassNameArg[]): string => {
-  let classes = [];
+  const classes: string[] = [];
 
-  for (const arg of args) {
-    if (typeof arg === "string") {
+  const processArg = (arg: ClassNameArg): void => {
+    if (typeof arg === 'string') {
       classes.push(arg);
-    } else if (typeof arg === "object" && arg !== null) {
-      for (const key in arg) {
-        if (arg[key]) {
-          classes.push(key);
+    } else if (typeof arg === 'object' && arg !== null) {
+      if (Array.isArray(arg)) {
+        arg.forEach(processArg);
+      } else {
+        for (const key in arg) {
+          if (arg[key]) {
+            classes.push(key);
+          }
         }
       }
     } else if (arg) {
       classes.push(String(arg));
     }
-  }
+  };
 
-  classes = [...new Set(classes)];
+  args.forEach(processArg);
 
-  return classes.join(" ");
+  return [...new Set(classes)].join(' ');
 };
