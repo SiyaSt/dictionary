@@ -9,8 +9,8 @@ import { fetchDictionaryEntries } from "features/dictionaryThunk";
 import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
 import { useDebounce } from "hooks/useDebounce";
 import { useEffect, useState } from "react";
-import "./HomePage.scss";
 import { delay } from "shared/consts";
+import "./HomePage.scss";
 
 export const HomePage = () => {
   const results = useAppSelector(selectDictionaryResults);
