@@ -1,16 +1,17 @@
-import { FC, ReactNode, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Options } from "types/types";
-import { Filter } from "components";
+import { Options } from "shared/types/types";
+import { Filter, Input } from "components";
 import "./Aside.scss";
 
 interface AsideProps {
-  input: ReactNode;
+  searchTerm: string;
   filter: boolean;
+  setSearchTerm: (value: string) => void;
   onFilterChange?: (newFilter: string) => void;
 }
 
-export const Aside: FC<AsideProps> = ({ input, onFilterChange, filter }) => {
+export const Aside: FC<AsideProps> = ({onFilterChange, filter, searchTerm, setSearchTerm }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedFilters = useMemo(() => {
     const filterParam = searchParams.get("filter");
@@ -33,7 +34,7 @@ export const Aside: FC<AsideProps> = ({ input, onFilterChange, filter }) => {
 
   return (
     <div className="aside">
-      {input}
+      <Input value={searchTerm} setInputValue={setSearchTerm}/>
       {filter && (
         <Filter
           options={optionsFilter}

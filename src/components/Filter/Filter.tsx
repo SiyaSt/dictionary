@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ReactComponent as Square } from "imges/square.svg";
 import { Checkbox } from "components";
-import { Options } from "types/types";
+import { Options } from "shared/types/types";
 
 interface FilterProps {
   options: Options[];

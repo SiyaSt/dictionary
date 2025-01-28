@@ -1,8 +1,6 @@
 import axios from "axios";
-import { Word } from "types/types";
-
-const API_KEY = "e174b1c6-1a9e-4f1e-a248-f5ef3e4c8ef4";
-const API_URL = `https://dictionaryapi.com/api/v3/references/collegiate/json/`;
+import { API_KEY, API_URL } from "shared/consts";
+import { Word } from "shared/types/types";
 
 export const fetchDictionaryData = async (query: string): Promise<Word[]> => {
   try {
@@ -18,7 +16,7 @@ export const fetchDictionaryData = async (query: string): Promise<Word[]> => {
         type: entry.fl,
         definition: entry.shortdef[0],
         checked: false,
-        pronunciation: entry.hwi.hw
+        pronunciation: entry.hwi.hw,
       }));
 
       words.sort((a, b) => a.word.localeCompare(b.word));

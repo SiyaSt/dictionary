@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Word } from "types/types";
+import { Word } from "shared/types/types";
 
 interface WordItemProps {
   result: Word;

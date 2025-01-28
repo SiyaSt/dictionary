@@ -1,4 +1,4 @@
-import { Word } from "types/types";
+import { Word } from "shared/types/types";
 import React, { FC, useState } from "react";
 import { Checkbox, WordDef, WordItem } from "components";
 import { ReactComponent as Star } from "imges/Star.svg";

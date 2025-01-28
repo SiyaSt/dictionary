@@ -1,6 +1,8 @@
-import { Aside, Input, WordsList } from "components";
+import { Aside, WordsList } from "components";
+import { useDebounce } from "hooks/useDebounce";
 import { useEffect, useState } from "react";
-import { Word } from "types/types";
+import { delay } from "shared/consts";
+import { Word } from "shared/types/types";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "hooks/reduxHooks";
@@ -13,10 +15,15 @@ export const StarWordPage = () => {
   const starWords = useAppSelector(selectStarWords);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedValue = useDebounce(searchTerm, delay);
 
   useEffect(() => {
     dispatch(setStarWords(starWords));
   }, [starWords, dispatch]);
+
+  useEffect(() => {
+    setSearchTerm(debouncedValue);
+  }, [debouncedValue, setSearchTerm]);
 
   const handleFilterChange = (filterParam: string) => {
     setSearchParams({ filter: filterParam });
@@ -43,13 +50,11 @@ export const StarWordPage = () => {
     searchTerm,
   );
 
-  const delay = 300;
   return (
     <div className="star-page">
       <Aside
-        input={
-          <Input value={searchTerm} onChange={setSearchTerm} delay={delay} />
-        }
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
         onFilterChange={handleFilterChange}
         filter={true}
       />

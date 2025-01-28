@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Word } from "types/types";
+import { Word } from "shared/types/types";
 import { fetchDictionaryEntries } from "features/dictionaryThunk";
 
 interface DictionaryState {
