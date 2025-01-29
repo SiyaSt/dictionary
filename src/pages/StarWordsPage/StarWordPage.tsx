@@ -21,9 +21,6 @@ export const StarWordPage = () => {
     dispatch(setStarWords(starWords));
   }, [starWords, dispatch]);
 
-  useEffect(() => {
-    setSearchTerm(debouncedValue);
-  }, [debouncedValue, setSearchTerm]);
 
   const handleFilterChange = (filterParam: string) => {
     setSearchParams({ filter: filterParam });
@@ -47,7 +44,7 @@ export const StarWordPage = () => {
   const filteredWords = filterWords(
     starWords,
     searchParams.get("filter") || "all",
-    searchTerm,
+    debouncedValue,
   );
 
   return (
