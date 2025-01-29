@@ -17,13 +17,8 @@ interface WordCardProps {
 
 export const WordCard: FC<WordCardProps> = ({ word, index, isStarWordPage, handleToggleStarWords, handleDrop}) => {
   const starWords = useAppSelector(selectStarWords);
-  const [expandedWords, setExpandedWords] = useState<Record<string, boolean>>(
-    {},
-  );
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleToggleExpanded = (word: string) => {
-    setExpandedWords((prev) => ({ ...prev, [word]: !prev[word] }));
-  };
 
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>, word: Word) => {
     if (!isStarWordPage) return;
@@ -37,7 +32,7 @@ export const WordCard: FC<WordCardProps> = ({ word, index, isStarWordPage, handl
 
 
   const isStarred = starWords.some((starWord) => starWord.word === word.word);
-  const isExpanded = expandedWords[word.word] || false;
+
   return (
     <li
       key={word.word}
@@ -45,7 +40,7 @@ export const WordCard: FC<WordCardProps> = ({ word, index, isStarWordPage, handl
       onDragStart={(e) => handleDragStart(e, word)}
       onDragOver={handleDragOver}
       onDrop={(e) => handleDrop(e, index)}
-      onClick={() => handleToggleExpanded(word.word)}
+      onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="word-item">
         {isStarWordPage && <span className="handle">☰</span>}
