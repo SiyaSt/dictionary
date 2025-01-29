@@ -1,5 +1,5 @@
 import { WordCard } from "components/WordCard/WordCard";
-import { setStarWords, toggleStarWord } from "features/starWordsSlice";
+import { setStarWords, toggleStarWord } from "features/dictionarySlice";
 import { useDispatch } from "react-redux";
 import { Word } from "shared/types/types";
 import React, { FC } from "react";

@@ -6,8 +6,8 @@ import { Word } from "shared/types/types";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "hooks/reduxHooks";
-import { selectStarWords } from "features/starWordsSelector";
-import { setStarWords } from "features/starWordsSlice";
+import { selectStarWords } from "features/dictionarySelectors";
+import { setStarWords } from "features/dictionarySlice";
 import "./StarWordPage.scss";
 
 export const StarWordPage = () => {

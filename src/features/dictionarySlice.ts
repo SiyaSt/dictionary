@@ -7,6 +7,7 @@ interface DictionaryState {
   results: Word[];
   loading: boolean;
   error: string | null | undefined;
+  starWords: Word[];
 }
 
 const initialState: DictionaryState = {
@@ -14,14 +15,37 @@ const initialState: DictionaryState = {
   results: [],
   loading: false,
   error: null,
+  starWords: JSON.parse(localStorage.getItem("starWords") || "[]"),
 };
 
 const dictionarySlice = createSlice({
-  name: 'dictionary',
+  name: "dictionary",
   initialState,
   reducers: {
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
+    },
+    setStarWords(state, action: PayloadAction<Word[]>) {
+      state.starWords = action.payload
+      localStorage.setItem("starWords", JSON.stringify(action.payload));
+    },
+    toggleStarWord(state, action: PayloadAction<Word>) {
+      const wordIndex = state.starWords.findIndex(
+        (word) => word.word === action.payload.word
+      );
+
+      if (wordIndex !== -1) {
+        state.starWords[wordIndex].checked = !state.starWords[wordIndex].checked;
+        state.starWords.splice(wordIndex, 1);
+      } else {
+        state.starWords.push({ ...action.payload, checked: true });
+      }
+      localStorage.setItem("starWords", JSON.stringify(state.starWords.filter((word) => word.checked)));
+
+      state.results = state.results.map(word => ({
+        ...word,
+        checked: state.starWords.some(starWord => starWord.word === word.word)
+      }));
     },
   },
   extraReducers: (builder) => {
@@ -30,10 +54,16 @@ const dictionarySlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchDictionaryEntries.fulfilled, (state, action: PayloadAction<Word[]>) => {
-        state.loading = false;
-        state.results = action.payload;
-      })
+      .addCase(
+        fetchDictionaryEntries.fulfilled,
+        (state, action: PayloadAction<Word[]>) => {
+          state.loading = false;
+          state.results = action.payload.map(word => ({
+            ...word,
+            checked: state.starWords.some(starWord => starWord.word === word.word)
+          }));
+        }
+      )
       .addCase(fetchDictionaryEntries.rejected, (state) => {
         state.loading = false;
         state.error = "Error";
@@ -41,5 +71,6 @@ const dictionarySlice = createSlice({
   },
 });
 
-export const { setSearchQuery } = dictionarySlice.actions;
+export const { setSearchQuery, toggleStarWord, setStarWords } =
+  dictionarySlice.actions;
 export default dictionarySlice.reducer;

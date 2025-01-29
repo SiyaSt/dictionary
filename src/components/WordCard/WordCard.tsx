@@ -1,8 +1,6 @@
 import { Checkbox } from "components/CheckBox/CheckBox";
 import { WordDef } from "components/WordDef/WordDef";
 import { WordItem } from "components/WordItem/WordItem";
-import { selectStarWords } from "features/starWordsSelector";
-import { useAppSelector } from "hooks/reduxHooks";
 import React, { FC, useState } from "react";
 import { Word } from "shared/types/types";
 import { ReactComponent as Star } from "imges/Star.svg";
@@ -16,7 +14,6 @@ interface WordCardProps {
 }
 
 export const WordCard: FC<WordCardProps> = ({ word, index, isStarWordPage, handleToggleStarWords, handleDrop}) => {
-  const starWords = useAppSelector(selectStarWords);
   const [isExpanded, setIsExpanded] = useState(false);
 
 
@@ -31,7 +28,7 @@ export const WordCard: FC<WordCardProps> = ({ word, index, isStarWordPage, handl
   };
 
 
-  const isStarred = starWords.some((starWord) => starWord.word === word.word);
+
 
   return (
     <li
@@ -46,7 +43,7 @@ export const WordCard: FC<WordCardProps> = ({ word, index, isStarWordPage, handl
         {isStarWordPage && <span className="handle">☰</span>}
         <WordItem result={word} />
         <Checkbox
-          checked={isStarred}
+          checked={word.checked}
           onChange={() => handleToggleStarWords(word)}
           className="checkbox"
           icon={<Star className="icon" />}
