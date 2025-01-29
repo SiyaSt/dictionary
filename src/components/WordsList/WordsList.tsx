@@ -13,10 +13,7 @@ interface WordsListProps {
   isStarWordPage: boolean;
 }
 
-export const WordsList: FC<WordsListProps> = ({
-  words,
-  isStarWordPage,
-}) => {
+export const WordsList: FC<WordsListProps> = ({ words, isStarWordPage }) => {
   const dispatch = useDispatch();
   const starWords = useAppSelector(selectStarWords);
   const [expandedWords, setExpandedWords] = useState<Record<string, boolean>>(
@@ -64,10 +61,11 @@ export const WordsList: FC<WordsListProps> = ({
         onDragStart={(e) => handleDragStart(e, word)}
         onDragOver={handleDragOver}
         onDrop={(e) => handleDrop(e, index)}
+        onClick={() => toggleExpanded(word.word)}
       >
         <div className="word-item">
           {isStarWordPage && <span className="handle">☰</span>}
-          <WordItem result={word} toggleExpanded={toggleExpanded} />
+          <WordItem result={word} />
           <Checkbox
             checked={isStarred}
             onChange={() => toggleStarWords(word)}
