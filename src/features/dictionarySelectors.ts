@@ -12,7 +12,7 @@ const selectStarWordsState = (state: RootState) => state.dictionary;
 
 export const selectStarWords = createSelector(
   [selectStarWordsState],
-  (starWordsState) => starWordsState.starWords
+  (starWordsState) => starWordsState.starWords,
 );
 
 export const selectDictionaryLoading = (state: RootState) =>
@@ -23,7 +23,7 @@ export const selectDictionaryError = (state: RootState) =>
 export const selectDictionaryStatus = createSelector(
   [selectDictionaryLoading, selectDictionaryError],
   (loading, error) => ({
-    loading: loading,
-    error: error,
+    loading,
+    error,
   }),
 );

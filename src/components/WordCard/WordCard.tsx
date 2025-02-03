@@ -37,7 +37,7 @@ export const WordCard: FC<WordCardProps> = ({ word, index, isStarWordPage, handl
       onDragStart={(e) => handleDragStart(e, word)}
       onDragOver={handleDragOver}
       onDrop={(e) => handleDrop(e, index)}
-      onClick={() => setIsExpanded(!isExpanded)}
+      onClick={() => setIsExpanded((prev) => (!prev))}
     >
       <div className="word-item">
         {isStarWordPage && <span className="handle">☰</span>}
