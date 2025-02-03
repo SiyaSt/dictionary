@@ -1,0 +1,22 @@
+.details-section {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .detail-item {
+    margin-bottom: 5px;
+
+    .detail-label {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+  }
+
+
+  hr {
+    border: none;
+    border-top: 2px solid #ccc;
+  }
+}
+
+

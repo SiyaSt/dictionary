@@ -1,0 +1,38 @@
+@use "../../styles/variables" as *;
+
+.wave-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+
+  .wave-point {
+    width: 10px;
+    height: 10px;
+    background-color: $accent-color-dark;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: wave 1s ease-in-out infinite;
+  }
+
+  @for $i from 1 through 5 {
+    .wave-point:nth-child(#{$i}) {
+      animation-delay: $i * 0.1s;
+    }
+  }
+}
+
+
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

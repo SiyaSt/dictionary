@@ -1,0 +1,49 @@
+@use "../../styles/variables" as *;
+
+.word-list {
+  list-style: none;
+  width: 80%;
+  padding: 0;
+
+  li {
+    background: $accent-color-light;
+    margin-top: 10px;
+    border-radius: 4px;
+
+    .word-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      .word {
+        display: flex;
+        align-items: center;
+        width: 90%;
+        gap: 10px;
+        transition: max-height 0.3s ease-in-out;
+
+        .def {
+          width: 900px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+      }
+
+      .handle {
+        cursor: grab;
+      }
+    }
+  }
+}
+
+@media screen and (width <= 800px) {
+  .word-list {
+    width: 100%;
+  }
+
+  .def{
+    display: none;
+  }
+}

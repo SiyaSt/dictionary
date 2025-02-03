@@ -1,0 +1,26 @@
+@use "../../styles/variables" as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $accent-color-dark;
+  padding: 30px;
+  border-radius: 4px;
+
+  .link {
+    text-decoration: none;
+    color: $accent-color-light;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    &.active {
+      color: $text-color;
+    }
+  }
+}
+
+
+.link:nth-child(2)::before {
+  content: "★ ";
+}
