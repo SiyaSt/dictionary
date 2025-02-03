@@ -4,7 +4,6 @@ import {
 } from "features/dictionarySelectors";
 import { Loader, WordsList } from "components";
 import { Aside } from "components";
-import { setSearchQuery } from "features/dictionarySlice";
 import { fetchDictionaryEntries } from "features/dictionaryThunk";
 import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
 import { useDebounce } from "hooks/useDebounce";
@@ -22,7 +21,6 @@ export const HomePage = () => {
 
   useEffect(() => {
     if (debouncedValue) {
-      dispatch(setSearchQuery(debouncedValue));
       dispatch(fetchDictionaryEntries(debouncedValue));
     }
   }, [debouncedValue, dispatch]);

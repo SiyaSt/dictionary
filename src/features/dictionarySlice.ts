@@ -3,7 +3,6 @@ import { Word } from "shared/types/types";
 import { fetchDictionaryEntries } from "features/dictionaryThunk";
 
 interface DictionaryState {
-  searchQuery: string;
   results: Word[];
   loading: boolean;
   error: string | null | undefined;
@@ -11,7 +10,6 @@ interface DictionaryState {
 }
 
 const initialState: DictionaryState = {
-  searchQuery: "",
   results: [],
   loading: false,
   error: null,
@@ -22,9 +20,6 @@ const dictionarySlice = createSlice({
   name: "dictionary",
   initialState,
   reducers: {
-    setSearchQuery: (state, action: PayloadAction<string>) => {
-      state.searchQuery = action.payload;
-    },
     setStarWords(state, action: PayloadAction<Word[]>) {
       state.starWords = action.payload
       localStorage.setItem("starWords", JSON.stringify(action.payload));
@@ -71,6 +66,6 @@ const dictionarySlice = createSlice({
   },
 });
 
-export const { setSearchQuery, toggleStarWord, setStarWords } =
+export const { toggleStarWord, setStarWords } =
   dictionarySlice.actions;
 export default dictionarySlice.reducer;
